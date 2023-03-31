@@ -31,7 +31,12 @@ public class Cliente {
      * @param c
      */
     public void adicionarConta(ContaBancaria c) {
-
+    	if(this.contas.contains(c)) {
+    		System.out.print("a conta ja esta associada a esta cliente");
+    	}else{
+    		this.contas.add(c);
+    			System.out.print("conta adicionada com sucesso");
+    	}
     }
 
     
@@ -45,7 +50,12 @@ public class Cliente {
      * @param c
      */
     public void removerConta(ContaBancaria c) {
-
+    	if(this.contas.contains(c)) {
+    		this.contas.remove(c);
+    		System.out.print("Conta removida com sucesso!");
+    	}else {
+    		System.out.print("A conta nao esta associada a este cliente.");
+    	}
     }
 
     /**
@@ -59,10 +69,15 @@ public class Cliente {
      * @return
      */
     public ContaBancaria localizarContaNumero(int numero) {
-        return null;
+    	for(ContaBancaria c : contas) {
+    		if(c.getNumeroConta() == numero) {
+    		System.out.println("conta encontrada");
+    		return c;
+    		}else {
+    			System.out.println("conta nao encontrada");
+    		}
+    	}
     }
-
-    
     /**
      * Mehtodo recebe como argumento o objeto contabancaria que deve ser 
      * procurado na lista de contas, havendo ocorrehncia de elemento
@@ -74,7 +89,13 @@ public class Cliente {
      * @return
      */
     public boolean localizarConta(ContaBancaria c) {
-        return false;
+    	if(this.contas.contains(c)) {
+    		System.out.println("conta encontrada!");
+    		return true;
+    		}else {
+    			System.out.println("conta não encontrada");
+    			return false;
+    	}
     }
 
     /**
@@ -86,7 +107,12 @@ public class Cliente {
      * @return
      */
     public double balancoEntreContas() {
-        return 0.0;
+        double saldoTotal = 0;
+        for(ContaBancaria conta : contas) {
+        	saldoTotal += conta.getSaldo();
+        }
+        System.out.println("balanço entre contas: rs" + saldoTotal);
+        return saldoTotal;
     }
     
     public ArrayList<ContaBancaria> getContas() {
